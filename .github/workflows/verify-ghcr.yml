@@ -13,7 +13,7 @@ jobs:
           image=ghcr.io/shayankhoshniyat/liskov-shop:1.0.0
           docker pull "$image"
           docker run -d -p 8080:80 --name liskov-smoke "$image"
-          trap 'docker rm -f liskov-smoke' EXIT
-          curl --retry 10 --retry-connrefused --fail --silent --show-error http://localhost:8080/ -o /tmp/liskov.html
+          trap 'docker logs liskov-smoke; docker rm -f liskov-smoke' EXIT
+          curl --retry 10 --retry-all-errors --retry-delay 1 --max-time 4 --fail --silent --show-error http://localhost:8080/ -o /tmp/liskov.html
           grep -q '<html' /tmp/liskov.html
           curl --fail --silent --show-error http://localhost:8080/api/products.json | jq -e 'type == "array" or type == "object"' >/dev/null
