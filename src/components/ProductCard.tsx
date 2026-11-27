@@ -15,7 +15,6 @@ type ProductCardProps = {
 };
 
 const faNumber = new Intl.NumberFormat('fa-IR');
-const priceNumber = new Intl.NumberFormat('en-US');
 
 function ProductCard({
     product,
@@ -63,8 +62,8 @@ function ProductCard({
 
             <div className='item-purchase'>
                 <p className='item-price'>
-                    {offer && <del>{priceNumber.format(product.price)}</del>}
-                    {priceNumber.format(price)} تومان
+                    {offer && <del>{faNumber.format(product.price)}</del>}
+                    {faNumber.format(price)} تومان
                 </p>
 
                 <button
