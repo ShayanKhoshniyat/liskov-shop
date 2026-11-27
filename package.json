@@ -1,6 +1,6 @@
 {
   "name": "liskov",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "script.js",
   "private": true,
   "type": "module",

@@ -2,6 +2,12 @@
 
 All notable changes to Liskov Shop are documented here.
 
+## [1.0.1] - 2026-11-27
+
+### Changed
+
+- Intentionally display Latin digits in product-card prices for the rollback exercise.
+
 ## [1.0.0] - 2026-11-27
 
 ### Added
