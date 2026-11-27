@@ -2,6 +2,12 @@
 
 All notable changes to Liskov Shop are documented here.
 
+## [1.0.2] - 2026-11-27
+
+### Fixed
+
+- Restore Persian digits in product-card prices after the rollback exercise.
+
 ## [1.0.1] - 2026-11-27
 
 ### Changed
