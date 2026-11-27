@@ -1,0 +1,19 @@
+name: Verify published GHCR image
+on:
+  push:
+    branches: [codex/week7-ghcr-smoke]
+permissions:
+  contents: read
+jobs:
+  docker-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run published 1.0.0 image
+        run: |
+          image=ghcr.io/shayankhoshniyat/liskov-shop:1.0.0
+          docker pull "$image"
+          docker run -d -p 8080:80 --name liskov-smoke "$image"
+          trap 'docker rm -f liskov-smoke' EXIT
+          curl --retry 10 --retry-connrefused --fail --silent --show-error http://localhost:8080/ -o /tmp/liskov.html
+          grep -q '<html' /tmp/liskov.html
+          curl --fail --silent --show-error http://localhost:8080/api/products.json | jq -e 'type == "array" or type == "object"' >/dev/null
